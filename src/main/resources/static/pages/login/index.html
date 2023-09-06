@@ -1,35 +1,15 @@
-<!-- https://codepen.io/allisonching/pen/PoqNJvQ -->
-<header>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <script src="./service.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.js"
-            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-            crossorigin="anonymous"></script>
-</header>
-<h1>Login Page</h1>
+<link rel="stylesheet" type="text/css" href="./style.css">
+<script src="./service.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<h1>Login</h1>
 
+<span>Don't have an account? <a href="/pages/accountmanager/index.html">Create Account</a></span>
 
-<div class="container">
-    <!-- it will become a model-->
-    <div class="container-msg-modal">
-        <div class="container-modal-content--success container-modal-content">
-            <span>Welcome!</span>
-        </div> <!-- redirect fn does not esist-->
-        <div class="container-modal-content--error container-modal-content"><span>Failed Login</span></div>
-    </div>
-
-    <!-- -->
-    <form action="" id="form">
-        <div class="container-form-userName container-form-input">
-            <label for="userName">User name</label>
-            <input type="text" placeholder="User Name" id="username" required>
-        </div>
-        <div class="container-form-userPassword container-form-input">
-            <label for="password">Password</label>
-            <input type="password" placeholder="User Password" id="password" onfocus="this.value=''" required>
-        </div>
-        <button onclick="login(event)" class="js-form-btn">Login</button>
-    </form>
-</div>
+<form id="loginForm">
+    <input type="text" id="username" required> - Username<br>
+    <input type="password" id="password" required> - Password<br>
+    <button onclick="login(event)">Login</button>
+</form>
