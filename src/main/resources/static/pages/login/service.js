@@ -1,16 +1,10 @@
 class LoginForm {
-
-    async login() {
-        const isValid =  await this.isValidLogin()
-        await this.modifyDomState(isValid);
-    }
-
     async isValidLogin() {
         let isValidLogin=false;
         const loginForm = document.getElementById('form');
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        const endpoint = "/accounts/login/" + username + "/" + password;
+        const endpoint = "/login/" + username + "/" + password;
         event.preventDefault();
         await $.ajax({
             type: "GET",
@@ -38,13 +32,13 @@ class LoginForm {
         const modalContent = document.querySelectorAll('.container-modal-content');
         const errorMsg = document.querySelector('.container-modal-content--error');
         const successMsg = document.querySelector('.container-modal-content--success');
-        modal.classList.add('enabled')        
+        modal.classList.add('enabled')
         if(isLogin) {
           successMsg.classList.add('enabled')
         } else {
           errorMsg.classList.add('enabled')
         }
-        
+
         setTimeout(function() {
           modal.classList.remove('enabled')
           loginForm.reset();
@@ -53,4 +47,13 @@ class LoginForm {
           });
         }, 3000)
     }
+
+    async login() {
+        const isValid =  await this.isValidLogin()
+        await this.modifyDomState(isValid);
+    }
+}
+
+async function login(e) {
+    await new LoginForm().login();
 }

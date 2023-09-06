@@ -6,11 +6,8 @@ import com.github.curriculeon.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
-public class AccountService {
+public class TransactionService {
     @Autowired
     private AccountRepository repository;
 
@@ -32,34 +29,4 @@ public class AccountService {
         return transact(new Transaction(accountId, 0, deposit));
     }
 
-
-    public AccountRepository getRepository() {
-        return repository;
-    }
-
-    public List<Account> findAll() {
-        Iterable<Account> accounts = repository.findAll();
-        List<Account> list = new ArrayList<>();
-        accounts.forEach(list::add);
-        return list;
-    }
-
-    public Account findById(Long id) {
-        return repository.findById(id).get();
-    }
-
-    public Account create(Account account) {
-        return repository.save(account);
-    }
-
-    public Account updateById(Long id, Account account) {
-        account.setId(id);
-        return repository.save(account);
-    }
-
-    public Account deleteById(Long id) {
-        Account account = this.findById(id);
-        repository.delete(account);
-        return account;
-    }
 }

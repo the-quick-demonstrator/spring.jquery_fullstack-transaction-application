@@ -17,31 +17,29 @@ public class AccountController {
     @Autowired
     private AccountService service;
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/readAll")
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    public ResponseEntity<Account> create(@RequestBody Account account) {
+        return new ResponseEntity<>(service.create(account), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/read-all")
     public ResponseEntity<List<Account>> readAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/login/{username}/{password}")
-    public ResponseEntity<Account> login( // TODO - replace @PathVariable with @RequestParam
-            @PathVariable String username,
-            @PathVariable String password) {
-        if(username.equals("leon") && password.equals("hunter")) {
-            return new ResponseEntity<>(new Account(1L, Double.MAX_VALUE), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(new Account(Long.MAX_VALUE, Double.MIN_VALUE), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/read/{id}")
     public ResponseEntity<Account> readById(@PathVariable Long id) {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/deposit")
-    public ResponseEntity<Account> deposit(@RequestBody Transaction transaction) {
-        return new ResponseEntity<>(service.deposit(transaction.getAccountId(), transaction.getDeposit()), HttpStatus.OK);
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/update/{id}")
+    public ResponseEntity<Account> updateById(@PathVariable Long id, @RequestBody Account account) {
+        return new ResponseEntity<>(service.updateById(id, account), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/withdrawal")
-    public ResponseEntity<Account> withdrawal(@RequestBody Transaction transaction) {
-        return new ResponseEntity<>(service.withdrawal(transaction.getAccountId(), transaction.getWithdrawal()), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
+    public ResponseEntity<Account> deleteById(@PathVariable Long id) {
+        return new ResponseEntity<>(service.deleteById(id), HttpStatus.OK);
     }
 }
