@@ -1,10 +1,9 @@
 class LoginForm {
-    async isValidLogin(event) {
+    async isValidLogin() {
         let isValidLogin=false;
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const endpoint = "/login/" + username + "/" + password;
-        event.preventDefault();
         await $.ajax({
             type: "GET",
             dataType: "JSON",
@@ -54,5 +53,6 @@ class LoginForm {
 }
 
 async function login(event) {
-    await new LoginForm().login(event);
+    event.preventDefault();
+    await new LoginForm().login();
 }
