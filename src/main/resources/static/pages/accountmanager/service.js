@@ -1,6 +1,8 @@
 class Account {
-    constructor(id, balance) {
+    constructor(id, name, password, balance) {
         this.id = id;
+        this.name = name;
+        this.password = password;
         this.balance = balance;
     }
 }
@@ -9,8 +11,10 @@ function create(e) {
     e.preventDefault();
     console.log("click")
     const id = document.getElementById("id").value;
+    const name = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
     const balance = document.getElementById("balance").value;
-    const account = new Account(0, balance);
+    const account = new Account(id, name, password, balance);
     const data = JSON.stringify(account);
 
     $.ajax({
@@ -84,8 +88,10 @@ function readAll(e) {
 function update(e) {
     e.preventDefault();
     const id = document.getElementById("id").value;
+    const name = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
     const balance = document.getElementById("balance").value;
-    const account = new Account(0, balance);
+    const account = new Account(0, name, password, balance);
     const data = JSON.stringify(account);
 
     $.ajax({

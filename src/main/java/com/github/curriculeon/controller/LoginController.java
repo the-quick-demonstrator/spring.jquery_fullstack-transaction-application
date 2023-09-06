@@ -14,8 +14,8 @@ public class LoginController {
             @PathVariable String username,
             @PathVariable String password) { // TODO - replace @PathVariable with @RequestParam
         if (username.equals("leon") && password.equals("hunter")) {
-            return new ResponseEntity<>(new Account(1L, Double.MAX_VALUE), HttpStatus.OK);
+            return new ResponseEntity<>(new Account(1L, "Leon", "Hunter", Double.MAX_VALUE), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new Account(Long.MAX_VALUE, Double.MIN_VALUE), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new Account(Long.MAX_VALUE, null, null, Double.MIN_VALUE), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
