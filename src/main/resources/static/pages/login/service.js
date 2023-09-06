@@ -1,7 +1,6 @@
 class LoginForm {
-    async isValidLogin() {
+    async isValidLogin(event) {
         let isValidLogin=false;
-        const loginForm = document.getElementById('form');
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const endpoint = "/login/" + username + "/" + password;
@@ -54,6 +53,6 @@ class LoginForm {
     }
 }
 
-async function login(e) {
-    await new LoginForm().login();
+async function login(event) {
+    await new LoginForm().login(event);
 }
