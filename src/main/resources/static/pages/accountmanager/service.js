@@ -1,7 +1,7 @@
 class Account {
-    constructor(id, name, password, balance) {
+    constructor(id, username, password, balance) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.password = password;
         this.balance = balance;
     }
@@ -9,13 +9,13 @@ class Account {
 
 function create(e) {
     e.preventDefault();
-    console.log("click")
     const id = document.getElementById("id").value;
-    const name = document.getElementById("username").value;
+    const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
     const balance = document.getElementById("balance").value;
-    const account = new Account(id, name, password, balance);
+    const account = new Account(id, username, password, balance);
     const data = JSON.stringify(account);
+    console.log(data)
 
     $.ajax({
         type: "POST",
