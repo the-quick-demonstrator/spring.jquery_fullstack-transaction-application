@@ -1,0 +1,22 @@
+<link rel="stylesheet" type="text/css" href="./login.style.css">
+<script src="./LoginForm.js"></script>
+<script src="./login.service.js"></script>
+<h1>My Transaction Application</h1>
+
+<div class="container">
+    <!-- it will become a model-->
+    <div class="container-msg-modal">
+        <div class="container-modal-content--success container-modal-content">
+          <span>Welcome!</span>
+      </div> <!-- redirect fn does not esist-->
+        <div class="container-modal-content--error container-modal-content"><span>Failed Login</span></div>
+    </div>
+    <form>
+        <label for="username">Username</label>
+        <input type="text" placeholder="User Name" id="username" required>
+        <br/>
+        <label for="password">Password</label>
+        <input type="password" placeholder="User Password" id="password" onfocus="this.value=''" required>
+        <button onclick="login(event)">Login</button>
+    </form>
+</div>

@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(value = "/account-controller")
+@RequestMapping(value = "/accounts/")
 public class AccountController {
     @Autowired
     private AccountService service;
@@ -21,6 +21,18 @@ public class AccountController {
     public ResponseEntity<List<Account>> readAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/login")
+    public ResponseEntity<Account> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+        if(username.equals("leon") && password.equals("hunter")) {
+            return new ResponseEntity<>(new Account(1L, Double.MAX_VALUE), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new Account(Long.MAX_VALUE, Double.MIN_VALUE), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/read/{id}")
+    public ResponseEntity<Account> readById(@PathVariable Long id) {
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.PUT, value = "/deposit")
     public ResponseEntity<Account> deposit(@RequestBody Transaction transaction) {
         return new ResponseEntity<>(service.deposit(transaction.getAccountId(), transaction.getDeposit()), HttpStatus.OK);

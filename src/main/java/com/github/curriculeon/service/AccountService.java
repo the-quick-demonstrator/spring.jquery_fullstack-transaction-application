@@ -43,4 +43,8 @@ public class AccountService {
         accounts.forEach(list::add);
         return list;
     }
+
+    public Account findById(Long id) {
+        return repository.findById(id).get();
+    }
 }
