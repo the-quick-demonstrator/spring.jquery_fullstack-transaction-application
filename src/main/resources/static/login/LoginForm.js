@@ -1,7 +1,8 @@
 class LoginForm {
 
-    login() {
-        this.modifyDomState(this.isValidLogin());
+    async login() {
+        const isValid =  await this.isValidLogin()
+        await this.modifyDomState(isValid);
     }
 
     async isValidLogin() {
@@ -31,7 +32,7 @@ class LoginForm {
         return isValidLogin;
     }
 
-    modifyDomState(isLogin) {
+    async modifyDomState(isLogin) {
         const loginForm = document.getElementById('form');
         const modal = document.querySelector('.container-msg-modal');
         const modalContent = document.querySelectorAll('.container-modal-content');

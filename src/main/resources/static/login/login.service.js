@@ -1,3 +1,3 @@
-function login(e) {
-    new LoginForm().login();
+async function login(e) {
+    await new LoginForm().login();
 }
