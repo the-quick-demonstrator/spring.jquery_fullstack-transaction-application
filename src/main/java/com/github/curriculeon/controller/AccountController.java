@@ -21,8 +21,10 @@ public class AccountController {
     public ResponseEntity<List<Account>> readAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/login")
-    public ResponseEntity<Account> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    @RequestMapping(method = RequestMethod.GET, value = "/login/{username}/{password}")
+    public ResponseEntity<Account> login( // TODO - replace @PathVariable with @RequestParam
+            @PathVariable String username,
+            @PathVariable String password) {
         if(username.equals("leon") && password.equals("hunter")) {
             return new ResponseEntity<>(new Account(1L, Double.MAX_VALUE), HttpStatus.OK);
         }

@@ -4,31 +4,29 @@ class LoginForm {
         this.modifyDomState(this.isValidLogin());
     }
 
-    isValidLogin() {
+    async isValidLogin() {
         let isValidLogin=false;
         const loginForm = document.getElementById('form');
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        const endpoint = "/accounts/login/username=" + username + "&password=" + password;
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            $.ajax({
-                type: "GET",
-                dataType: "JSON",
-                crossDomain: true,
-                url: endpoint,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                success: function (response) {
-                    isValidLogin = true;
-                },
-                error: function (request, status, error) {
-                    alert('Invalid Login');
-                }
-            });
+        const endpoint = "/accounts/login/" + username + "/" + password;
+        event.preventDefault();
+        await $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            crossDomain: true,
+            url: endpoint,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (response) {
+                isValidLogin = true;
+            },
+            error: function (request, status, error) {
+                alert('Invalid Login');
+            }
         });
         return isValidLogin;
     }
